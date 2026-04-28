@@ -5,6 +5,7 @@ import axios from 'axios';
 import { toast } from 'sonner';
 import { useDispatch } from 'react-redux';
 import { setCart } from '@/Redux/productSlice';
+import { API_BASE_URL } from "@/config/api";
 
 const ProductDesc = ({ product }) => {
     const accessToken = localStorage.getItem("accessToken")
@@ -58,7 +59,7 @@ const ProductDesc = ({ product }) => {
 
         try {
             const res = await axios.post(
-                'http://localhost:8000/api/v1/cart/add',
+                `${API_BASE_URL}/api/v1/cart/add`,
                 { productId, quantity },
                 {
                     headers: {

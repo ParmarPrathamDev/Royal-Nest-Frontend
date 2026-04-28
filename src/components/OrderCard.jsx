@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from './ui/button'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
+import { API_BASE_URL } from "@/config/api"
 
 export const OrderCard = ({ userOrder = [] }) => {
     const navigate = useNavigate()
@@ -85,7 +86,7 @@ export const OrderCard = ({ userOrder = [] }) => {
                                         const imageUrl = url
                                             ? url.startsWith("http")
                                                 ? url
-                                                : `http://localhost:8000${url}`
+                                                : `${API_BASE_URL}${url}`
                                             : "/placeholder.png";
 
                                         return (

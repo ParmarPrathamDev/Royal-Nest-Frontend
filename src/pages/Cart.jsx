@@ -10,6 +10,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { setCart } from '@/Redux/productSlice'
 import { toast } from 'sonner'
+import { API_BASE_URL } from "@/config/api"
 
 const Cart = () => {
   const { cart } = useSelector(store => store.product)
@@ -20,7 +21,7 @@ const Cart = () => {
   const total = Number((subtotal + shipping + tax).toFixed(2))
 
   const navigate = useNavigate()
-  const API = "http://localhost:8000/api/v1/cart"
+  const API = `${API_BASE_URL}/api/v1/cart`
   const accessToken = localStorage.getItem("accessToken")
   const dispatch = useDispatch()
 

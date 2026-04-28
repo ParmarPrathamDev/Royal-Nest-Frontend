@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "@/config/api";
 
 const HomeProducts = () => {
   const [products, setProducts] = useState([]);
@@ -11,7 +12,7 @@ const HomeProducts = () => {
   const getProducts = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:8000/api/v1/product/getallproduct");
+      const res = await axios.get(`${API_BASE_URL}/api/v1/product/getallproduct`);
 
       if (res.data.success) {
         let allProducts = res.data.products;

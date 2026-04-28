@@ -4,6 +4,7 @@ import axios from "axios";
 import { Crown, Edit, Eye, Search, ShieldCheck, User } from "lucide-react";
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "@/config/api";
 
 export const AdminUsers = () => {
   const [users, setUsers] = useState([]);
@@ -15,7 +16,7 @@ export const AdminUsers = () => {
 
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/v1/user/all-user",
+        `${API_BASE_URL}/api/v1/user/all-user`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,

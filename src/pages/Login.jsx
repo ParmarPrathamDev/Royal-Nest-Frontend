@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { setUser } from "@/Redux/userSlice"
 import { Eye, EyeOff } from "lucide-react"
+import { API_BASE_URL } from "@/config/api"
 
 const Login = () => {
   const [step, setStep] = useState("login")
@@ -53,7 +54,7 @@ const Login = () => {
       setLoading(true)
 
       const res = await axios.post(
-        "http://localhost:8000/api/v1/user/login",
+        `${API_BASE_URL}/api/v1/user/login`,
         { email, password: form.password }
       )
 
@@ -112,7 +113,7 @@ const Login = () => {
       setLoading(true)
 
       const res = await axios.post(
-        "http://localhost:8000/api/v1/user/forgot-password",
+        `${API_BASE_URL}/api/v1/user/forgot-password`,
         { email }
       )
 
@@ -135,7 +136,7 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:8000/api/v1/user/verify-otp/${email}`,
+        `${API_BASE_URL}/api/v1/user/verify-otp/${email}`,
         { otp }
       )
 
@@ -154,7 +155,7 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:8000/api/v1/user/change-password/${email}`,
+        `${API_BASE_URL}/api/v1/user/change-password/${email}`,
         {
           newPassword: form.newPassword,
           confirmPassword: form.confirmPassword,

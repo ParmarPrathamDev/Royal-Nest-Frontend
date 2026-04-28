@@ -28,6 +28,7 @@ import axios from 'axios';
 import { toast } from 'sonner';
 import { setProducts } from '@/Redux/productSlice';
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "@/config/api";
 
 import {
   AlertDialog,
@@ -56,7 +57,7 @@ const AdminProduct = () => {
   const [sortOrder, setSortOrder] = useState("")
   const fetchLatestProducts = async () => {
   try {
-    const res = await axios.get("http://localhost:8000/api/v1/product/getallproduct")
+    const res = await axios.get(`${API_BASE_URL}/api/v1/product/getallproduct`)
 
     if (res.data.success) {
       const latestProducts = [...(res.data.products || [])].sort(
@@ -78,7 +79,7 @@ useEffect(() => {
 
     try {
       if (value.trim() === "") {
-        const res = await axios.get("http://localhost:8000/api/v1/product/getallproduct")
+        const res = await axios.get(`${API_BASE_URL}/api/v1/product/getallproduct`)
 
         if (res.data.success) {
           const latestProducts = [...(res.data.products || [])].sort(
@@ -91,7 +92,7 @@ useEffect(() => {
       }
 
       const res = await axios.get(
-        `http://localhost:8000/api/v1/product/search?keyword=${value}`
+        `${API_BASE_URL}/api/v1/product/search?keyword=${value}`
       )
 
       if (res.data.success) {
@@ -207,7 +208,7 @@ const handleSave = async (e) => {
 
   try {
     const res = await axios.put(
-      `http://localhost:8000/api/v1/product/update/${editProduct._id}`,
+      `${API_BASE_URL}/api/v1/product/update/${editProduct._id}`,
       formData,
       {
         headers: {
@@ -373,7 +374,7 @@ const handleSave = async (e) => {
       const remainingProducts = safeProducts.filter((product) => product._id !== productId)
 
       const res = await axios.delete(
-        `http://localhost:8000/api/v1/product/delete/${productId}`,
+        `${API_BASE_URL}/api/v1/product/delete/${productId}`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`

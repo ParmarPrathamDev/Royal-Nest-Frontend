@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { API_BASE_URL } from "@/config/api";
 
 const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -10,7 +11,7 @@ const AdminOrders = () => {
     const fetchOrders = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:8000/api/v1/orders/all",
+          `${API_BASE_URL}/api/v1/orders/all`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,

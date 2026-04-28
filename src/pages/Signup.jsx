@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label"
 import { Eye, EyeOff, Loader2 } from "lucide-react"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
+import { API_BASE_URL } from "@/config/api"
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -80,7 +81,7 @@ const Signup = () => {
       setLoading(true)
 
       const res = await axios.post(
-        "http://localhost:8000/api/v1/user/register",
+        `${API_BASE_URL}/api/v1/user/register`,
         formData,
         {
           headers: {

@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '@/Redux/userSlice';
 import { FaUserCircle } from 'react-icons/fa';
+import { API_BASE_URL } from "@/config/api";
 
 const NaveBar = () => {
 
@@ -26,7 +27,7 @@ const NaveBar = () => {
     const accessToken = localStorage.getItem("accessToken");
 
     const res = await axios.post(
-      "http://localhost:8000/api/v1/user/logout",
+      `${API_BASE_URL}/api/v1/user/logout`,
       {},
       {
         headers: {

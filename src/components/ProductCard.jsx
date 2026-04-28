@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setCart } from '@/Redux/productSlice';
+import { API_BASE_URL } from "@/config/api";
 
 const ProductCard = ({ product, loading }) => {
     const { productImg, productPrice, productName, _id, quantity } = product || {};
@@ -28,7 +29,7 @@ const ProductCard = ({ product, loading }) => {
 
         try {
             const res = await axios.post(
-                `http://localhost:8000/api/v1/cart/add`,
+                `${API_BASE_URL}/api/v1/cart/add`,
                 { productId, quantity: 1 },
                 {
                     headers: {

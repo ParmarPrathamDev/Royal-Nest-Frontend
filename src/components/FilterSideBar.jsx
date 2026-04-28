@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/select"
 import axios from 'axios'
 import { X } from "lucide-react"
+import { API_BASE_URL } from "@/config/api"
 
 const FilterSideBar = ({
   search,
@@ -35,7 +36,7 @@ const FilterSideBar = ({
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/v1/category/get")
+        const res = await axios.get(`${API_BASE_URL}/api/v1/category/get`)
         if (res.data.success) {
           setAllCategories(res.data.categories.map(c => c.categoryName))
         }
@@ -50,7 +51,7 @@ const FilterSideBar = ({
   useEffect(() => {
     const fetchBrands = async () => {
       try {
-const res = await axios.get("http://localhost:8000/api/v1/product/getallproduct") 
+        const res = await axios.get(`${API_BASE_URL}/api/v1/product/getallproduct`) 
 
         if (res.data.success) {
           let products = res.data.products || []

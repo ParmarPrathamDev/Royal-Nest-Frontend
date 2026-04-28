@@ -25,6 +25,7 @@ import {
 
 import { Textarea } from "@/components/ui/textarea";
 import ImageUpload from "@/components/ImageUpload";
+import { API_BASE_URL } from "@/config/api";
 
 const AddCategory = () => {
   const [deleteId, setDeleteId] = useState(null);
@@ -42,7 +43,7 @@ const AddCategory = () => {
 
   const getCategories = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api/v1/category/get");
+      const res = await axios.get(`${API_BASE_URL}/api/v1/category/get`);
       if (res.data.success) {
         setCategories(res.data.categories);
       }
@@ -69,7 +70,7 @@ const AddCategory = () => {
       formData.append("file", categoryImage);
 
       const res = await axios.post(
-        "http://localhost:8000/api/v1/category/add",
+        `${API_BASE_URL}/api/v1/category/add`,
         formData
       );
 
@@ -95,7 +96,7 @@ const AddCategory = () => {
 
     try {
       await axios.put(
-        `http://localhost:8000/api/v1/category/update/${editCategoryId}`,
+        `${API_BASE_URL}/api/v1/category/update/${editCategoryId}`,
         formData
       );
 
@@ -170,7 +171,7 @@ const AddCategory = () => {
               onClick={async () => {
                 try {
                   const res = await axios.delete(
-                    `http://localhost:8000/api/v1/category/delete/${deleteId}`
+                    `${API_BASE_URL}/api/v1/category/delete/${deleteId}`
                   );
 
                   if (res.data.success) {
@@ -313,7 +314,7 @@ const AddProductForm = ({ selectedCategoryId, onClose }) => {
   });
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/v1/category/get")
+    axios.get(`${API_BASE_URL}/api/v1/category/get`)
       .then(res => setCategories(res.data.categories));
   }, []);
 
@@ -418,7 +419,7 @@ const AddProductForm = ({ selectedCategoryId, onClose }) => {
     try {
       setLoading(true);
 
-      const res = await axios.post("http://localhost:8000/api/v1/product/add", formData, {
+      const res = await axios.post(`${API_BASE_URL}/api/v1/product/add`, formData, {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
 

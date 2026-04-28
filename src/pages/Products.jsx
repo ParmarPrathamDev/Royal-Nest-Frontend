@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setProducts } from '@/Redux/productSlice'
 import { useParams, useNavigate } from "react-router-dom"
 import { SlidersHorizontal } from "lucide-react"
+import { API_BASE_URL } from "@/config/api"
 
 const Products = () => {
   const { products } = useSelector((store) => store.product) || { products: [] }
@@ -34,7 +35,7 @@ const fetchFilteredProducts = async () => {
   try {
     setLoading(true)
 
-    const res = await axios.get("http://localhost:8000/api/v1/product/getallproduct")
+    const res = await axios.get(`${API_BASE_URL}/api/v1/product/getallproduct`)
 
     if (res.data.success) {
       let data = [...(res.data.products || [])]

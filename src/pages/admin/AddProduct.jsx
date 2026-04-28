@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setProducts } from '@/Redux/productSlice';
 import { Loader2 } from 'lucide-react';
 import { useLocation, useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "@/config/api";
 
 import {
   Select,
@@ -46,7 +47,7 @@ const AddProduct = () => {
 
   const fetchAllProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api/v1/product/get");
+      const res = await axios.get(`${API_BASE_URL}/api/v1/product/get`);
       if (res.data.success) {
         dispatch(setProducts(res.data.products || []));
       }
@@ -58,7 +59,7 @@ const AddProduct = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/v1/category/get");
+        const res = await axios.get(`${API_BASE_URL}/api/v1/category/get`);
 
         if (res.data.success) {
           setCategories(res.data.categories);
@@ -174,7 +175,7 @@ const AddProduct = () => {
       setLoading(true);
 
       const res = await axios.post(
-        "http://localhost:8000/api/v1/product/add",
+        `${API_BASE_URL}/api/v1/product/add`,
         formData,
         {
           headers: {

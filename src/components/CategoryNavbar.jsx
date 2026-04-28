@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "@/config/api";
 
 const CategoryNavbar = () => {
   const [categories, setCategories] = useState([]);
@@ -9,7 +10,7 @@ const CategoryNavbar = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/v1/category/get");
+        const res = await axios.get(`${API_BASE_URL}/api/v1/category/get`);
         if (res.data.success) {
           setCategories(res.data.categories);
         }
